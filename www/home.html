@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIRAGE - Home</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Background animated elements */
+    .bg-orbs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.15;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    .orb1 {
+      width: 400px;
+      height: 400px;
+      background: #00ffff;
+      top: -100px;
+      left: -100px;
+      animation-delay: 0s;
+    }
+
+    .orb2 {
+      width: 350px;
+      height: 350px;
+      background: #ff00ff;
+      top: 50%;
+      right: -50px;
+      animation-delay: 5s;
+    }
+
+    .orb3 {
+      width: 300px;
+      height: 300px;
+      background: #00ff00;
+      bottom: -50px;
+      left: 30%;
+      animation-delay: 10s;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translate(0px, 0px);
+      }
+
+      25% {
+        transform: translate(30px, -30px);
+      }
+
+      50% {
+        transform: translate(0px, 40px);
+      }
+
+      75% {
+        transform: translate(-30px, -20px);
+      }
+    }
+
+    /* Main content */
+    .content {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(180deg, rgba(15, 12, 41, 0.8) 0%, rgba(48, 43, 99, 0.6) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-headline {
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #00ffff 0%, #00ff88 50%, #ff00ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .hero-subheading {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+
+    .hero-image {
+      margin: 60px 0;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .floating-circle {
+      width: 300px;
+      height: 300px;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 255, 255, 0.3), rgba(0, 255, 255, 0.1));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 0 20px rgba(0, 255, 255, 0.8),
+        0 0 40px rgba(0, 255, 255, 0.5),
+        inset 0 0 40px rgba(0, 255, 255, 0.2);
+      animation: glowPulse 3s infinite ease-in-out;
+      position: relative;
+    }
+
+    .floating-circle img {
+      width: 90%;
+      height: 90%;
+      border-radius: 50%;
+      object-fit: cover;
+      filter: brightness(1.1);
+    }
+
+    @keyframes glowPulse {
+
+      0%,
+      100% {
+        box-shadow:
+          0 0 20px rgba(0, 255, 255, 0.8),
+          0 0 40px rgba(0, 255, 255, 0.5),
+          inset 0 0 40px rgba(0, 255, 255, 0.2);
+        transform: scale(1);
+      }
+
+      50% {
+        box-shadow:
+          0 0 40px rgba(0, 255, 255, 1),
+          0 0 80px rgba(0, 255, 255, 0.6),
+          inset 0 0 60px rgba(0, 255, 255, 0.3);
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* CTA Buttons */
+    .btn-primary-glow {
+      padding: 15px 40px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #00ffff 0%, #00ff88 100%);
+      color: #000;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+      animation: slideInUp 0.8s ease-out 0.3s both;
+    }
+
+    .btn-primary-glow:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 40px rgba(0, 255, 136, 0.8), 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-primary-glow:active {
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      padding: 15px 40px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: 2px solid rgba(0, 255, 255, 0.5);
+      border-radius: 50px;
+      background: transparent;
+      color: #00ffff;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    }
+
+    .btn-ghost:hover {
+      border-color: #00ffff;
+      background: rgba(0, 255, 255, 0.1);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
+      transform: translateY(-3px);
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Cards Section */
+    .cards-section {
+      padding: 100px 20px;
+      background: rgba(48, 43, 99, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 60px;
+      text-align: center;
+      background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 255, 0.05) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+      cursor: pointer;
+      animation: fadeIn 0.6s ease-out forwards;
+      opacity: 0;
+    }
+
+    .card:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .card:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .card:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .card:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      }
+
+      100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+      }
+    }
+
+    .card:hover {
+      border-color: rgba(0, 255, 255, 0.6);
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(255, 0, 255, 0.1) 100%);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.4), 0 10px 30px rgba(0, 0, 0, 0.5);
+      transform: translateY(-10px);
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #00ffff;
+      filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.6));
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .card-meta {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 20px;
+    }
+
+    .card-cta {
+      display: inline-block;
+      padding: 10px 25px;
+      background: rgba(0, 255, 255, 0.2);
+      border: 1px solid rgba(0, 255, 255, 0.5);
+      border-radius: 25px;
+      color: #00ffff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 255, 255, 0.3);
+      transition: left 0.3s ease;
+      z-index: -1;
+    }
+
+    .card-cta:hover {
+      color: #000;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+    }
+
+    .card-cta:hover::before {
+      left: 0;
+    }
+
+    /* Skeleton Loading */
+    .card-skeleton {
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 255, 0.05) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 40px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 0.6;
+      }
+
+      50% {
+        opacity: 0.8;
+      }
+    }
+
+    .skeleton-line {
+      height: 12px;
+      background: rgba(0, 255, 255, 0.2);
+      border-radius: 8px;
+      margin-bottom: 15px;
+      animation: pulse 2s infinite;
+    }
+
+    .skeleton-line:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Cursor-following prompt */
+    .cursor-prompt {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      padding: 10px 20px;
+      background: rgba(0, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 255, 255, 0.5);
+      border-radius: 20px;
+      color: #00ffff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    }
+
+    .cursor-prompt.visible {
+      opacity: 1;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(15, 12, 41, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #00ffff;
+      text-decoration: none;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+
+    .navbar-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      margin-left: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .navbar-link:hover {
+      color: #00ffff;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+    }
+
+    /* User Info Styling */
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 8px 15px;
+      background: rgba(0, 255, 255, 0.1);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 25px;
+      animation: slideIn 0.4s ease-out;
+    }
+
+    .user-name {
+      color: #00ffff;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .logout-btn {
+      margin-left: 0;
+      padding: 5px 12px;
+      background: rgba(255, 0, 0, 0.2);
+      border: 1px solid rgba(255, 0, 0, 0.4);
+      border-radius: 15px;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background: rgba(255, 0, 0, 0.4);
+      color: #ff6b6b;
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+      border-color: rgba(255, 0, 0, 0.6);
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 40px 20px;
+        min-height: 80vh;
+      }
+
+      .hero-headline {
+        font-size: 2rem;
+      }
+
+      .floating-circle {
+        width: 200px;
+        height: 200px;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .navbar-link {
+        margin-left: 0;
+      }
+
+      .btn-primary-glow,
+      .btn-ghost {
+        padding: 12px 30px;
+        font-size: 1rem;
+      }
+    }
+
+    /* Prefers reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Login Modal Styles */
+    .login-modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      animation: fadeIn 0.3s ease-in-out;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-modal.show {
+      display: flex;
+    }
+
+    .login-modal-content {
+      position: relative;
+      background: transparent;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      max-width: 800px;
+      width: 90%;
+      animation: slideInUp 0.5s ease-out;
+    }
+
+    .login-modal-close {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 32px;
+      font-weight: bold;
+      color: #00ffff;
+      cursor: pointer;
+      z-index: 2001;
+      transition: all 0.3s ease;
+    }
+
+    .login-modal-close:hover {
+      color: #ff00ff;
+      transform: rotate(90deg);
+    }
+
+    /* Poppins font import for login modal */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    /* Auth Wrapper Styling */
+    .login-modal .auth-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      height: 500px;
+      border: 2px solid #00d4ff;
+      box-shadow: 0 0 25px #00d4ff;
+      overflow: hidden;
+    }
+
+    .login-modal .auth-wrapper .credentials-panel {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .login-modal .credentials-panel.signin {
+      left: 0;
+      padding: 0 40px;
+    }
+
+    .login-modal .credentials-panel.signin .slide-element {
+      transform: translateX(0%);
+      transition: .7s;
+      opacity: 1;
+    }
+
+    .login-modal .auth-wrapper.toggled .credentials-panel.signin .slide-element {
+      transform: translateX(-120%);
+      opacity: 0;
+    }
+
+    .login-modal .credentials-panel.signup {
+      right: 0;
+      padding: 0 60px;
+    }
+
+    .login-modal .credentials-panel.signup .slide-element {
+      transform: translateX(120%);
+      transition: .7s ease;
+      opacity: 0;
+      filter: blur(10px);
+    }
+
+    .login-modal .auth-wrapper.toggled .credentials-panel.signup .slide-element {
+      transform: translateX(0%);
+      opacity: 1;
+      filter: blur(0px);
+    }
+
+    .login-modal .credentials-panel h2 {
+      font-size: 32px;
+      text-align: center;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .login-modal .credentials-panel .field-wrapper {
+      position: relative;
+      width: 100%;
+      height: 50px;
+      margin-top: 25px;
+    }
+
+    .login-modal .field-wrapper input {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      color: #fff;
+      font-weight: 600;
+      border-bottom: 2px solid #fff;
+      padding-right: 23px;
+      transition: .5s;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .login-modal .field-wrapper input:focus,
+    .login-modal .field-wrapper input:valid {
+      border-bottom: 2px solid #00d4ff;
+    }
+
+    .login-modal .field-wrapper label {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #fff;
+      transition: .5s;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .login-modal .field-wrapper input:focus~label,
+    .login-modal .field-wrapper input:valid~label {
+      top: -5px;
+      color: #00d4ff;
+    }
+
+    .login-modal .field-wrapper i {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      font-size: 18px;
+      transform: translateY(-50%);
+      color: #fff;
+    }
+
+    .login-modal .field-wrapper input:focus~i,
+    .login-modal .field-wrapper input:valid~i {
+      color: #00d4ff;
+    }
+
+    .login-modal .submit-button {
+      position: relative;
+      width: 100%;
+      height: 45px;
+      background: transparent;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      border: 2px solid #00d4ff;
+      overflow: hidden;
+      z-index: 1;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .login-modal .submit-button::before {
+      content: "";
+      position: absolute;
+      height: 300%;
+      width: 100%;
+      background: linear-gradient(#1a1a2e, #00d4ff, #1a1a2e, #00d4ff);
+      top: -100%;
+      left: 0;
+      z-index: -1;
+      transition: .5s;
+    }
+
+    .login-modal .submit-button:hover:before {
+      top: 0;
+    }
+
+    .login-modal .switch-link {
+      font-size: 14px;
+      text-align: center;
+      margin: 20px 0 10px;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .login-modal .switch-link a {
+      text-decoration: none;
+      color: #00d4ff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .login-modal .switch-link a:hover {
+      text-decoration: underline;
+    }
+
+    .login-modal .welcome-section {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .login-modal .welcome-section.signin {
+      right: 0;
+      text-align: right;
+      padding: 0 40px 60px 150px;
+    }
+
+    .login-modal .welcome-section.signin .slide-element {
+      transform: translateX(0);
+      transition: .7s ease;
+      opacity: 1;
+      filter: blur(0px);
+    }
+
+    .login-modal .auth-wrapper.toggled .welcome-section.signin .slide-element {
+      transform: translateX(120%);
+      opacity: 0;
+      filter: blur(10px);
+    }
+
+    .login-modal .welcome-section.signup {
+      left: 0;
+      text-align: left;
+      padding: 0 150px 60px 38px;
+      pointer-events: none;
+    }
+
+    .login-modal .welcome-section.signup .slide-element {
+      transform: translateX(-120%);
+      transition: .7s ease;
+      opacity: 0;
+      filter: blur(10px);
+    }
+
+    .login-modal .auth-wrapper.toggled .welcome-section.signup .slide-element {
+      transform: translateX(0%);
+      opacity: 1;
+      filter: blur(0);
+    }
+
+    .login-modal .welcome-section h2 {
+      text-transform: uppercase;
+      font-size: 36px;
+      line-height: 1.3;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .login-modal .welcome-section p {
+      font-size: 16px;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .login-modal .auth-wrapper .background-shape {
+      position: absolute;
+      right: 0;
+      top: -5px;
+      height: 600px;
+      width: 850px;
+      background: linear-gradient(45deg, #1a1a2e, #00d4ff);
+      transform: rotate(10deg) skewY(40deg);
+      transform-origin: bottom right;
+      transition: 1.5s ease;
+      transition-delay: 1.6s;
+    }
+
+    .login-modal .auth-wrapper.toggled .background-shape {
+      transform: rotate(0deg) skewY(0deg);
+      transition-delay: .5s;
+    }
+
+    .login-modal .auth-wrapper .secondary-shape {
+      position: absolute;
+      left: 250px;
+      top: 100%;
+      height: 700px;
+      width: 850px;
+      background: #1a1a2e;
+      border-top: 3px solid #00d4ff;
+      transform: rotate(0deg) skewY(0deg);
+      transform-origin: bottom left;
+      transition: 1.5s ease;
+      transition-delay: .5s;
+    }
+
+    .login-modal .auth-wrapper.toggled .secondary-shape {
+      transform: rotate(-11deg) skewY(-41deg);
+      transition-delay: 1.2s;
+    }
+
+    /* Responsive login modal */
+    @media (max-width: 768px) {
+      .login-modal-content {
+        width: 95%;
+        max-width: 100%;
+      }
+
+      .login-modal .auth-wrapper {
+        height: auto;
+        min-height: 500px;
+        flex-direction: column;
+      }
+
+      .login-modal .auth-wrapper .credentials-panel,
+      .login-modal .welcome-section {
+        width: 100%;
+        position: relative;
+      }
+
+      .login-modal .credentials-panel.signin,
+      .login-modal .credentials-panel.signup {
+        padding: 40px 30px;
+        left: 0;
+        right: 0;
+      }
+
+      .login-modal .credentials-panel.signin .slide-element,
+      .login-modal .credentials-panel.signup .slide-element {
+        transform: translateY(0);
+        opacity: 1;
+        filter: blur(0);
+      }
+
+      .login-modal .auth-wrapper .background-shape,
+      .login-modal .auth-wrapper .secondary-shape {
+        display: none;
+      }
+
+      .login-modal-close {
+        right: 15px;
+        top: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .login-modal .credentials-panel.signin,
+      .login-modal .credentials-panel.signup {
+        padding: 30px 20px;
+      }
+
+      .login-modal .credentials-panel h2 {
+        font-size: 24px;
+      }
+
+      .login-modal .field-wrapper input,
+      .login-modal .field-wrapper label {
+        font-size: 14px;
+      }
+
+      .login-modal .submit-button {
+        font-size: 14px;
+        height: 40px;
+      }
+
+      .login-modal .switch-link {
+        font-size: 13px;
+      }
+    }
+
+    /* Login Message Styles */
+    .login-message {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      text-align: center;
+      display: none;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .login-message.show {
+      display: block;
+    }
+
+    .login-message.success {
+      background-color: rgba(0, 255, 136, 0.2);
+      color: #00ff88;
+      border: 1px solid rgba(0, 255, 136, 0.5);
+    }
+
+    .login-message.error {
+      background-color: rgba(255, 0, 0, 0.2);
+      color: #ff6b6b;
+      border: 1px solid rgba(255, 0, 0, 0.5);
+    }
+
+    .login-message.loading {
+      background-color: rgba(0, 212, 255, 0.2);
+      color: #00d4ff;
+      border: 1px solid rgba(0, 212, 255, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Background Orbs -->
+  <div class="bg-orbs">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="navbar">
+    <a href="home.html" class="navbar-brand">M.I.R.A.G.E</a>
+    <div style="display: flex; gap: 20px; align-items: center;">
+      <!-- User Info Section (Hidden by default) -->
+      <div id="userInfo" class="user-info" style="display: none;">
+        <span class="user-name" id="userName">User</span>
+        <a href="#" id="logoutBtn" class="navbar-link logout-btn">Logout</a>
+      </div>
+      <!-- Login/Go to Assistant (Shown by default) -->
+      <div id="authLinks" class="auth-links">
+        <a href="#" id="loginBtn" class="navbar-link">Login</a>
+        <a href="#" id="goAssistantLink" class="navbar-link">Go to Assistant</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <!-- Hero Section -->
+    <section class="hero" style="margin-top: 60px;">
+      <div>
+        <h1 class="hero-headline">Revolutionizing AI With The Aid Of Technology</h1>
+        <p class="hero-subheading">
+          Meet MIRAGE, your intelligent virtual assistant. Powered by cutting-edge AI, designed for elegance.
+        </p>
+        <div class="hero-image">
+          <div class="floating-circle">
+            <!-- Replaced Iron Man HUD with Idle.mp4 Loop (Listening.mp4 commented out per request) -->
+            <video id="heroVideo" autoplay loop muted playsinline
+              style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+              <!-- <source src="assets/img/Listening.mp4" type="video/mp4"> -->
+              <source src="assets/img/Idle.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+          <button class="btn-primary-glow" id="goToAssistant">
+            Go to MIRAGE Assistant
+          </button>
+          <button class="btn-ghost" id="learnMore">Learn More</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="cards-section">
+      <h2 class="section-title">Experience the Power</h2>
+      <div class="cards-grid">
+        <!-- Card 1 -->
+        <div class="card">
+          <div class="card-icon">
+            <i class="fas fa-microphone"></i>
+          </div>
+          <h3 class="card-title">Voice Commands</h3>
+          <p class="card-meta">Real-time processing</p>
+          <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 20px;">
+            Speak naturally and let MIRAGE understand your intent with advanced voice recognition.
+          </p>
+          <a href="index.html" class="card-cta">Explore</a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+          <div class="card-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3 class="card-title">AI Intelligence</h3>
+          <p class="card-meta">Powered by Gemini</p>
+          <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 20px;">
+            Intelligent responses powered by advanced AI models for meaningful conversations.
+          </p>
+          <a href="index.html" class="card-cta">Explore</a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+          <div class="card-icon">
+            <i class="fas fa-image"></i>
+          </div>
+          <h3 class="card-title">Image Generation</h3>
+          <p class="card-meta">Creative visuals</p>
+          <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 20px;">
+            Generate stunning images using advanced AI art generation capabilities.
+          </p>
+          <a href="index.html" class="card-cta">Explore</a>
+        </div>
+
+        <!-- Card 4 - Skeleton -->
+        <div class="card-skeleton">
+          <div class="skeleton-line" style="height: 40px; margin-bottom: 20px;"></div>
+          <div class="skeleton-line" style="height: 15px;"></div>
+          <div class="skeleton-line" style="height: 15px;"></div>
+          <div class="skeleton-line" style="height: 15px; width: 60%;"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Cursor Prompt -->
+  <div class="cursor-prompt" id="cursorPrompt">Type command...</div>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="login-modal">
+    <div class="login-modal-content">
+      <span class="login-modal-close" id="closeLoginModal">&times;</span>
+      <div class="auth-wrapper">
+        <div class="background-shape"></div>
+        <div class="secondary-shape"></div>
+
+        <!-- Login Panel -->
+        <div class="credentials-panel signin">
+          <h2 class="slide-element">Login</h2>
+          <form action="#" id="loginForm">
+            <div class="field-wrapper slide-element">
+              <input type="text" id="loginUsername" required>
+              <label for="">Username or Email</label>
+              <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="field-wrapper slide-element">
+              <input type="password" id="loginPassword" required>
+              <label for="">Password</label>
+              <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <div class="field-wrapper slide-element">
+              <button class="submit-button" type="submit" id="loginSubmitBtn">Login</button>
+            </div>
+
+            <div class="switch-link slide-element">
+              <p>Don't have an account? <br> <a href="#" class="register-trigger">Sign Up</a></p>
+            </div>
+          </form>
+          <div id="loginMessage" class="login-message"></div>
+        </div>
+
+        <!-- Login Welcome Section -->
+        <div class="welcome-section signin">
+          <h2 class="slide-element">WELCOME BACK!</h2>
+        </div>
+
+        <!-- Signup Panel -->
+        <div class="credentials-panel signup">
+          <h2 class="slide-element">Register</h2>
+          <form action="#">
+            <div class="field-wrapper slide-element">
+              <input type="text" required>
+              <label for="">Username</label>
+              <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="field-wrapper slide-element">
+              <input type="email" required>
+              <label for="">Email</label>
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+
+            <div class="field-wrapper slide-element">
+              <input type="password" required>
+              <label for="">Password</label>
+              <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <div class="field-wrapper slide-element">
+              <button class="submit-button" type="submit">Register</button>
+            </div>
+
+            <div class="switch-link slide-element">
+              <p>Already have an account? <br> <a href="#" class="login-trigger">Sign In</a></p>
+            </div>
+          </form>
+        </div>
+
+        <!-- Signup Welcome Section -->
+        <div class="welcome-section signup">
+          <h2 class="slide-element">WELCOME!</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Eel client (served by the Eel Python server) -->
+  <script type="text/javascript" src="/eel.js"></script>
+  <script>
+    // Check for eel availability when the page is served from the Eel server.
+    (function () {
+      if (typeof eel !== 'undefined') {
+        try {
+          console.log('Γ£à eel.js loaded');
+          // If backend exposes a handler, call it to notify that home is loaded.
+        } catch (e) {
+          console.warn('Error during eel init', e);
+        }
+      } else {
+        console.log('Γä╣∩╕Å eel.js not available (file:// or server may not be running)');
+      }
+    })();
+  </script>
+
+  <script>
+    // ===== FIXED NAVIGATION FUNCTIONALITY =====
+
+    function navigateToPage(pageName) {
+      console.log(`Navigating to ${pageName}...`);
+      // Simply change the window location to navigate within the same tab
+      window.location.href = pageName;
+    }
+
+    function navigateToAssistant() {
+      // Check if user is authenticated first
+      if (typeof eel !== 'undefined') {
+        try {
+          eel.get_authenticated_user_info()(function (result) {
+            try {
+              if (!result || !result.authenticated || !result.name) {
+                console.log('User not authenticated. Showing login modal.');
+                // Show login modal instead of redirecting
+                document.getElementById('loginModal').classList.add('show');
+                return;
+              }
+
+              // User is authenticated - proceed to assistant
+              console.log('User authenticated. Opening assistant...');
+              navigateToPage('index.html');
+            } catch (e) {
+              console.error('Error checking authentication:', e);
+              // Proceed anyway if there's an error
+              navigateToPage('index.html');
+            }
+          });
+        } catch (e) {
+          console.error('Error calling eel function:', e);
+          navigateToPage('index.html');
+        }
+      } else {
+        console.log('eel not available. Proceeding to assistant.');
+        navigateToPage('index.html');
+      }
+    }
+
+    // Set up navigation event listeners
+    document.addEventListener('DOMContentLoaded', function () {
+      // Primary CTA button
+      const goToAssistantBtn = document.getElementById('goToAssistant');
+      if (goToAssistantBtn) {
+        goToAssistantBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          navigateToAssistant();
+        });
+      }
+
+      // Navbar link
+      const navAssistLink = document.getElementById('goAssistantLink');
+      if (navAssistLink) {
+        navAssistLink.addEventListener('click', function (e) {
+          e.preventDefault();
+          navigateToAssistant();
+        });
+      }
+
+      // Learn More button
+      const learnMoreBtn = document.getElementById('learnMore');
+      if (learnMoreBtn) {
+        learnMoreBtn.addEventListener('click', function () {
+          const cardsSection = document.querySelector('.cards-section');
+          if (cardsSection) {
+            cardsSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+
+      // Card explore links
+      const cardLinks = document.querySelectorAll('.card-cta');
+      cardLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          navigateToAssistant();
+        });
+      });
+
+      // Hero Video Sequence: Listening -> Idle (Loop)
+
+      // COMMENTED OUT: User requested only Idle.mp4 loop
+      /*
+      const heroVideo = document.getElementById('heroVideo');
+      if (heroVideo) {
+        heroVideo.addEventListener('ended', function() {
+            console.log('Listening intro ended, switching to Idle loop.');
+            this.src = 'assets/img/Idle.mp4';
+            this.loop = true;
+            this.play();
+        });
+      }
+      */
+    });
+
+    // Parallax effect with mouse
+    const floatingCircleEl = document.querySelector('.floating-circle');
+
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+      if (floatingCircleEl) {
+        floatingCircleEl.style.transform = `translate(${x}px, ${y}px) scale(1)`;
+      }
+
+      // Cursor prompt
+      const prompt = document.getElementById('cursorPrompt');
+      prompt.style.left = (e.clientX + 15) + 'px';
+      prompt.style.top = (e.clientY + 15) + 'px';
+    });
+
+    // Show cursor prompt on card hover
+    const cardElements = document.querySelectorAll('.card');
+    cardElements.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        document.getElementById('cursorPrompt').classList.add('visible');
+        document.getElementById('cursorPrompt').textContent = 'Click to explore ΓåÆ';
+      });
+      card.addEventListener('mouseleave', () => {
+        document.getElementById('cursorPrompt').classList.remove('visible');
+        document.getElementById('cursorPrompt').textContent = 'Type command...';
+      });
+    });
+
+    // Show cursor prompt on buttons
+    const buttonElements = document.querySelectorAll('.btn-primary-glow, .btn-ghost');
+    buttonElements.forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        document.getElementById('cursorPrompt').classList.add('visible');
+      });
+      btn.addEventListener('mouseleave', () => {
+        document.getElementById('cursorPrompt').classList.remove('visible');
+      });
+    });
+
+    console.log('Γ£à Home page loaded successfully');
+
+    // ===== LOGIN MODAL FUNCTIONALITY =====
+    const loginModal = document.getElementById('loginModal');
+    const loginBtn = document.getElementById('loginBtn');
+    const closeLoginModal = document.getElementById('closeLoginModal');
+    const authWrapper = loginModal.querySelector('.auth-wrapper');
+    const loginTrigger = loginModal.querySelector('.login-trigger');
+    const registerTrigger = loginModal.querySelector('.register-trigger');
+    const loginForm = document.getElementById('loginForm');
+    const loginMessage = document.getElementById('loginMessage');
+    const userInfo = document.getElementById('userInfo');
+    const authLinks = document.getElementById('authLinks');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const userName = document.getElementById('userName');
+
+    // Open login modal
+    loginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      loginModal.classList.add('show');
+      authWrapper.classList.remove('toggled');
+    });
+
+    // Close login modal
+    closeLoginModal.addEventListener('click', () => {
+      loginModal.classList.remove('show');
+      loginMessage.classList.remove('show');
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+      if (e.target === loginModal) {
+        loginModal.classList.remove('show');
+        loginMessage.classList.remove('show');
+      }
+    });
+
+    // Toggle between login and signup - using the exact JavaScript provided
+    registerTrigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      authWrapper.classList.add('toggled');
+      loginMessage.classList.remove('show');
+    });
+
+    loginTrigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      authWrapper.classList.remove('toggled');
+      loginMessage.classList.remove('show');
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && loginModal.classList.contains('show')) {
+        loginModal.classList.remove('show');
+        loginMessage.classList.remove('show');
+      }
+    });
+
+    // ===== GOOGLE AUTHENTICATION WITH EMAIL VERIFICATION =====
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('loginUsername').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      if (!email || !password) {
+        showLoginMessage('Please enter both email and password', 'error');
+        return;
+      }
+
+      showLoginMessage('Authenticating with Google...', 'loading');
+
+      try {
+        // Check if Eel is available
+        if (typeof eel !== 'undefined') {
+          // Call the Python backend to verify and authenticate Google
+          eel.verify_and_authenticate_google(email)(async function (result) {
+            if (result.success) {
+              await eel.set_authenticated_user(result.user_name, result.user_email)();
+              showLoginMessage(
+                `Γ£à ${result.message}\nYou can now access all Google features!`,
+                'success'
+              );
+              console.log('≡ƒÄë User authenticated:', result.user_name, result.user_email);
+
+              // Clear form
+              document.getElementById('loginUsername').value = '';
+              document.getElementById('loginPassword').value = '';
+
+              // Close modal after 2 seconds
+              setTimeout(() => {
+                loginModal.classList.remove('show');
+                loginMessage.classList.remove('show');
+                // Display user info in navbar
+                displayUserInfo(result.user_name);
+                // Optionally navigate or update UI
+                alert(`Welcome ${result.user_name}! All Google services are now available.`);
+              }, 2000);
+            } else {
+              showLoginMessage(result.message, 'error');
+              console.error('Authentication failed:', result.message);
+            }
+          });
+        } else {
+          showLoginMessage('Backend connection not available. Please ensure the app is running.', 'error');
+          console.log('Γä╣∩╕Å Eel not available - running in standalone mode');
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        showLoginMessage('An error occurred during authentication. Please try again.', 'error');
+      }
+    });
+
+    // Helper function to show login messages
+    function showLoginMessage(message, type) {
+      loginMessage.textContent = message;
+      loginMessage.className = `login-message show ${type}`;
+    }
+
+    // ===== USER INFO MANAGEMENT =====
+    // Display user info in navbar
+    function displayUserInfo(name) {
+      userName.textContent = name || 'User';
+      authLinks.style.display = 'none';
+      userInfo.style.display = 'flex';
+    }
+
+    // Hide user info and show login
+    function hideUserInfo() {
+      authLinks.style.display = 'flex';
+      userInfo.style.display = 'none';
+      userName.textContent = 'User';
+    }
+
+    // Logout functionality
+    logoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // Call backend logout function
+      if (typeof eel !== 'undefined') {
+        try {
+          eel.logout_user()(function (result) {
+            try {
+              if (result.success) {
+                console.log('User logged out successfully');
+                hideUserInfo();
+                loginMessage.classList.remove('show');
+                document.getElementById('loginUsername').value = '';
+                document.getElementById('loginPassword').value = '';
+                alert('You have been logged out. Please login again to access the assistant.');
+              } else {
+                console.log('Logout failed:', result.message);
+                alert('Logout failed: ' + result.message);
+              }
+            } catch (e) {
+              console.error('Error in logout callback:', e);
+              hideUserInfo();
+            }
+          });
+        } catch (e) {
+          console.error('Error calling logout_user:', e);
+          // Fallback local logout
+          hideUserInfo();
+          loginMessage.classList.remove('show');
+          document.getElementById('loginUsername').value = '';
+          document.getElementById('loginPassword').value = '';
+        }
+      } else {
+        // Fallback if eel is not available
+        hideUserInfo();
+        loginMessage.classList.remove('show');
+        document.getElementById('loginUsername').value = '';
+        document.getElementById('loginPassword').value = '';
+        console.log('eel not available, local logout only');
+      }
+    });
+
+    // Check if user is already authenticated on page load
+    window.addEventListener('load', () => {
+      if (typeof eel !== 'undefined') {
+        try {
+          eel.get_authenticated_user_info()(function (result) {
+            try {
+              if (result && result.authenticated && result.name) {
+                displayUserInfo(result.name);
+                console.log('User already authenticated:', result.name);
+              } else {
+                hideUserInfo();
+                console.log('User not authenticated');
+              }
+            } catch (e) {
+              console.error('Error in callback:', e);
+              hideUserInfo();
+            }
+          });
+        } catch (e) {
+          console.error('Error calling get_authenticated_user_info:', e);
+          hideUserInfo();
+        }
+      } else {
+        console.log('eel not available on page load');
+        hideUserInfo();
+      }
+    });
+  </script>
+</body>
+
+</html>

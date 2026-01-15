@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup Form</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- FIXED Font Awesome CDN -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+
+    <!-- Eel -->
+    <script type="text/javascript" src="/eel.js"></script>
+</head>
+
+<body>
+
+<div class="auth-wrapper">
+    <div class="background-shape"></div>
+    <div class="secondary-shape"></div>
+
+    <!-- LOGIN -->
+    <div class="credentials-panel signin">
+        <h2 class="slide-element">Login</h2>
+
+        <form id="loginForm">
+            <div class="field-wrapper slide-element">
+                <input type="text" id="loginUsername" required></div>
+                <label>Username</label>
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="field-wrapper slide-element">
+                <input type="password" id="loginPassword" required>
+                <label>Password</label>
+                <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <div class="field-wrapper slide-element">
+                <button class="submit-button" type="submit">Login</button>
+            </div>
+
+            <div class="field-wrapper slide-element">
+                <button class="submit-button google-btn" id="googleLoginBtn" type="button">
+                    <i class="fa-brands fa-google"></i> Login with Google
+                </button>
+            </div>
+
+            <div class="switch-link slide-element">
+                <p>Don't have an account?<br>
+                    <a href="#" class="register-trigger">Sign Up</a>
+                </p>
+            </div>
+        </form>
+    </div>
+
+    <div class="welcome-section signin">
+        <h2 class="slide-element">WELCOME BACK!</h2>
+    </div>
+
+    <!-- REGISTER -->
+    <div class="credentials-panel signup">
+        <h2 class="slide-element">Register</h2>
+
+        <form id="registerForm">
+            <div class="field-wrapper slide-element">
+                <input type="text" id="registerUsername" required>
+                <label>Username</label>
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="field-wrapper slide-element">
+                <input type="email" id="registerEmail" required>
+                <label>Email</label>
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+
+            <div class="field-wrapper slide-element">
+                <input type="password" id="registerPassword" required>
+                <label>Password</label>
+                <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <div class="field-wrapper slide-element">
+                <input type="password" id="registerConfirmPassword" required>
+                <label>Confirm Password</label>
+                <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <div class="field-wrapper slide-element">
+                <button class="submit-button" type="submit">Register</button>
+            </div>
+
+            <div class="switch-link slide-element">
+                <p>Already have an account?<br>
+                    <a href="#" class="login-trigger">Sign In</a>
+                </p>
+            </div>
+        </form>
+    </div>
+
+    <div class="welcome-section signup">
+        <h2 class="slide-element">WELCOME!</h2>
+    </div>
+</div>
+
+<div class="footer">
+    <p>Made with love by <a href="#">CodeZenithAI</a></p>
+</div>
+
+<script src="style.js"></script>
+
+<script>
+/* =======================
+   SAFE EEL INITIALIZATION
+======================= */
+function waitForEel(callback, attempts = 50) {
+    let count = 0;
+    const timer = setInterval(() => {
+        count++;
+        if (window.eel && eel.user_login) {
+            clearInterval(timer);
+            callback();
+        } else if (count >= attempts) {
+            clearInterval(timer);
+            alert("Backend not connected. Please start Eel (localhost:8000).");
+        }
+    }, 100);
+}
+
+waitForEel(() => {
+
+    const authWrapper = document.querySelector('.auth-wrapper');
+
+    /* TOGGLE */
+    document.querySelector('.register-trigger')?.addEventListener('click', e => {
+        e.preventDefault();
+        authWrapper.classList.add('toggled');
+    });
+
+    document.querySelector('.login-trigger')?.addEventListener('click', e => {
+        e.preventDefault();
+        authWrapper.classList.remove('toggled');
+    });
+
+    /* LOGIN */
+    document.getElementById('loginForm')?.addEventListener('submit', e => {
+        e.preventDefault();
+
+        const username = loginUsername.value.trim();
+        const password = loginPassword.value.trim();
+
+        if (!username || !password) {
+            alert("Fill all fields");
+            return;
+        }
+
+        eel.user_login(username, password)(res => {
+            if (res && res.success) {
+                window.location.href = "home.html";
+            } else {
+                alert(res?.message || "Invalid credentials");
+            }
+        });
+    });
+
+    /* REGISTER */
+    document.getElementById('registerForm')?.addEventListener('submit', e => {
+        e.preventDefault();
+
+        const u = registerUsername.value.trim();
+        const eMail = registerEmail.value.trim();
+        const p = registerPassword.value;
+        const cp = registerConfirmPassword.value;
+
+        if (!u || !eMail || !p || !cp) {
+            alert("Fill all fields");
+            return;
+        }
+
+        if (p !== cp) {
+            alert("Passwords do not match");
+            return;
+        }
+
+        eel.user_register(u, eMail, p)(res => {
+            if (res && res.success) {
+                alert("Registered successfully");
+                authWrapper.classList.remove('toggled');
+                loginUsername.value = u;
+            } else {
+                alert(res?.message || "Registration failed");
+            }
+        });
+    });
+
+    /* GOOGLE LOGIN */
+    document.getElementById('googleLoginBtn')?.addEventListener('click', () => {
+        alert("Complete Google login in browser");
+
+        if (!eel.google_login_register) {
+            alert("Google login not configured in backend");
+            return;
+        }
+
+        eel.google_login_register('')(res => {
+            if (res && res.success) {
+                window.location.href = "home.html";
+            } else {
+                alert(res?.message || "Google login failed");
+            }
+        });
+    });
+
+    console.log("Auth system initialized");
+});
+</script>
+
+</body>
+</html>
