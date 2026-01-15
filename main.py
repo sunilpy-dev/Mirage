@@ -3917,6 +3917,13 @@ def start(command_queue):
 
     # speak("Initializing Jarvis...")
 
+    # --- INITIALIZE DATABASE & AUTH ---
+    import database
+    import auth # Important: Registers Eel functions
+    if not database.init_db():
+         print("❌ CRITICAL: Database initialization failed. Authentication may not work.")
+    # ----------------------------------
+
     eel.init("www")
 
     threading.Thread(target=hotword_listener_thread, args=(hotword_queue,), daemon=True).start()
@@ -3924,7 +3931,7 @@ def start(command_queue):
     # Start eel with a custom close_callback to prevent app exit on window close
     # block=False is required for the loop below to run
     try:
-        eel.start('home.html', size=(1000, 800), block=False, close_callback=lambda x, y: None)
+        eel.start('login.html', size=(1000, 800), block=False, close_callback=lambda x, y: None)
     except SystemExit:
         pass # Handle potential SystemExit from eel if it can't launch
     except Exception as e:

@@ -48,6 +48,7 @@ def init_db():
 
         if not table_exists:
             # Create users table with BLOB for password_hash (bcrypt returns bytes)
+            # Added email unique constraint and proper types
             cursor.execute('''
                 CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
